@@ -38,96 +38,66 @@ Design and implement a simple console-based system that helps Salalah Fitness Cl
 
 ## 🧩 OOP Breakdown
 
-### Classes Needed
+```csharp
+// Base class
+class Person
+{
+    int Id;
+    string FullName;
+    int Age;
+    void DisplayInfo();
+}
 
-#### **Person (Base Class)**
-- Fields: `Id`, `FullName`, `Age`  
-- Method: `DisplayInfo()`
+// Member inherits Person
+class Member : Person
+{
+    MemberType MembershipType;
+    List<FitnessClass> RegisteredClasses;
+    void RegisterToClass(FitnessClass fitnessClass);
+    void ShowRegisteredClasses();
+}
 
-#### **Member (Inherits from Person)**
-- Fields: `MembershipType` (Enum: Monthly, Quarterly, Yearly)  
-- Property: `List<FitnessClass> RegisteredClasses`  
-- Methods:  
-  - `RegisterToClass(FitnessClass fitnessClass)`  
-  - `ShowRegisteredClasses()`
+// Trainer inherits Person
+class Trainer : Person
+{
+    string Specialization;
+    List<FitnessClass> AssignedClasses;
+    void AssignToClass(FitnessClass fitnessClass);
+    void ShowAssignedClasses();
+}
 
-#### **Trainer (Inherits from Person)**
-- Field: `Specialization` (e.g., "Cardio", "Yoga")  
-- Property: `List<FitnessClass> AssignedClasses`  
-- Methods:  
-  - `AssignToClass(FitnessClass fitnessClass)`  
-  - `ShowAssignedClasses()`
+// FitnessClass
+class FitnessClass
+{
+    string ClassName;
+    string Schedule;
+    Trainer Trainer;
+    List<Member> EnrolledMembers;
+    void AddMember(Member member);
+    void ShowClassDetails();
+}
 
-#### **FitnessClass**
-- Fields: `ClassName`, `Schedule`, `Trainer`, `List<Member> EnrolledMembers`  
-- Methods:  
-  - `AddMember(Member member)`  
-  - `ShowClassDetails()`
+// FitnessCenter
+class FitnessCenter
+{
+    List<Member> Members;
+    List<Trainer> Trainers;
+    List<FitnessClass> Classes;
+    void AddMember();
+    void AddTrainer();
+    void CreateClass();
+    void AssignTrainerToClass();
+    void RegisterMemberToClass();
+    void ShowAllClasses();
+}
 
-#### **FitnessCenter**
-- Holds lists:  
-  - `List<Member> Members`  
-  - `List<Trainer> Trainers`  
-  - `List<FitnessClass> Classes`  
-- Methods:  
-  - `AddMember()`  
-  - `AddTrainer()`  
-  - `CreateClass()`  
-  - `AssignTrainerToClass()`  
-  - `RegisterMemberToClass()`  
-  - `ShowAllClasses()`  
 
----
+🧠 Concepts Covered
+✅ Object-Oriented Programming (OOP)
+✅ Classes & Objects
+✅ Inheritance & Encapsulation
+✅ Lists / Arrays for data management
+✅ Methods for operations on objects
+✅ Real-world application modeling
 
-## 🗂️ Classes & Relationships Diagram
-                   ┌───────────┐
-                   │  Person   │
-                   ├───────────┤
-                   │ Id        │
-                   │ FullName  │
-                   │ Age       │
-                   ├───────────┤
-                   │ DisplayInfo() │
-                   └─────┬─────┘
-                         │
-      ┌──────────────────┴───────────────────┐
-      │                                      │
-┌───────────────┐ ┌───────────────┐
-│ Member │ │ Trainer │
-├───────────────┤ ├───────────────┤
-│ MembershipType│ │ Specialization│
-│ RegisteredClasses│<───List───┐ │ AssignedClasses│<──List───┐
-├───────────────┤ │ ├───────────────┤ │
-│ RegisterToClass() │ │ │ AssignToClass() │ │
-│ ShowRegisteredClasses()│ │ │ ShowAssignedClasses()│ │
-└───────────────┘ │ └───────────────┘ │
-│
-▼
-┌─────────────────┐
-│ FitnessClass │
-├─────────────────┤
-│ ClassName │
-│ Schedule │
-│ Trainer │
-│ EnrolledMembers │<──List───┘
-├─────────────────┤
-│ AddMember() │
-│ ShowClassDetails() │
-└───────────────┘
 
-scss
-Copy code
-                   ┌───────────────────┐
-                   │  FitnessCenter    │
-                   ├───────────────────┤
-                   │ Members           │<──List───Member
-                   │ Trainers          │<──List───Trainer
-                   │ Classes           │<──List───FitnessClass
-                   ├───────────────────┤
-                   │ AddMember()       │
-                   │ AddTrainer()      │
-                   │ CreateClass()     │
-                   │ AssignTrainerToClass() │
-                   │ RegisterMemberToClass()│
-                   │ ShowAllClasses()       │
-                   └───────────────────┘
