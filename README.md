@@ -38,7 +38,7 @@ Design and implement a simple console-based system that helps Salalah Fitness Cl
 
 ## 🧩 OOP Breakdown
 
-```csharp
+
 // Base class
 class Person
 {
@@ -90,14 +90,71 @@ class FitnessCenter
     void RegisterMemberToClass();
     void ShowAllClasses();
 }
+## 🗂️ Classes & Relationships Diagram
+                       ┌───────────┐
+                       │  Person   │
+                       ├───────────┤
+                       │ Id        │
+                       │ FullName  │
+                       │ Age       │
+                       ├───────────┤
+                       │ DisplayInfo() │
+                       └─────┬─────┘
+                             │
+          ┌──────────────────┴───────────────────┐
+          │                                      │
+   ┌───────────────┐                      ┌───────────────┐
+   │    Member     │                      │    Trainer    │
+   ├───────────────┤                      ├───────────────┤
+   │ MembershipType│                      │ Specialization│
+   │ RegisteredClasses│<───List───┐       │ AssignedClasses│<──List───┐
+   ├───────────────┤           │       ├───────────────┤            │
+   │ RegisterToClass() │       │       │ AssignToClass() │          │
+   │ ShowRegisteredClasses()│  │       │ ShowAssignedClasses()│     │
+   └───────────────┘           │       └───────────────┘            │
+                               │
+                               ▼
+                       ┌─────────────────┐
+                       │  FitnessClass   │
+                       ├─────────────────┤
+                       │ ClassName       │
+                       │ Schedule        │
+                       │ Trainer         │
+                       │ EnrolledMembers │<──List───┘
+                       ├─────────────────┤
+                       │ AddMember()     │
+                       │ ShowClassDetails() │
+                       └───────────────┘
 
+                       ┌───────────────────┐
+                       │  FitnessCenter    │
+                       ├───────────────────┤
+                       │ Members           │<──List───Member
+                       │ Trainers          │<──List───Trainer
+                       │ Classes           │<──List───FitnessClass
+                       ├───────────────────┤
+                       │ AddMember()       │
+                       │ AddTrainer()      │
+                       │ CreateClass()     │
+                       │ AssignTrainerToClass() │
+                       │ RegisterMemberToClass()│
+                       │ ShowAllClasses()       │
+                       └───────────────────┘
+## 🧠 Concepts Covered
 
-🧠 Concepts Covered
-✅ Object-Oriented Programming (OOP)
-✅ Classes & Objects
-✅ Inheritance & Encapsulation
-✅ Lists / Arrays for data management
-✅ Methods for operations on objects
-✅ Real-world application modeling
+Object-Oriented Programming (OOP)
 
+Classes & Objects
 
+Inheritance & Encapsulation
+
+Lists / Arrays for data management
+
+Methods for operations on objects
+
+Real-world application modeling
+
+## 👨‍💻 Author
+
+📍 Salalah, Oman
+🔗 LinkedIn Profile
